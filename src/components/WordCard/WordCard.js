@@ -19,6 +19,18 @@ const CardGroup = styled.div`
   display: flex;
   justify-content: flex-start;
 `
+const DeleteContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+const CheckboxStyled = styled(Checkbox)`
+  border: 1px solid red;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100px;
+  padding: 5px;
+`
 //----WordCard Component -----//
 const WordCard = (props) => {
   const { wordObj } = props;
@@ -26,6 +38,9 @@ const WordCard = (props) => {
 	const borderColor= 'chocolate';
   return (
     <CardDiv isNewWord={wordObj.isNewWord}>
+      <DeleteContainer>
+        <CheckboxStyled onChange={e => props.onDeleteToggle(wordObj.id, e.target.checked)}>Delete</CheckboxStyled>
+      </DeleteContainer>
       <CardGroup>
         <TextWithLabel label="Word" borderColor={borderColor}>{wordObj.word}</TextWithLabel>
         <TextWithLabel label="Diacritic" borderColor={borderColor}>{wordObj.diacritic}</TextWithLabel>
@@ -40,7 +55,7 @@ const WordCard = (props) => {
 
 
       <div>{wordObj.isNewWord ? "New Word" : ""}</div>
-			<Checkbox onChange={e => props.onDeleteToggle(wordObj.id, e.target.checked)}>Delete</Checkbox>
+
     </CardDiv>
   )
 };

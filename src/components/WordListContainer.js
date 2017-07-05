@@ -52,9 +52,9 @@ class WordListContainer extends React.Component {
 		let { wordList } = this.props.match.params;
 		let { pageNumber } = this.props.currPage || {pageNumber: 1};
     let wordListJSX = <div>Loading</div>;
-
+    let wordPerPage = parseInt(this.props.settings.wordsPerPage);
     if (loadStatus === 'success') {
-      let pageInfo = this.getPageData(this.props.currWordList, pageNumber, 10);
+      let pageInfo = this.getPageData(this.props.currWordList, pageNumber, wordPerPage);
       wordListJSX = (
         <PageContainer
           pageNumber={pageNumber}
@@ -82,7 +82,8 @@ const mapStateToProps = state => {
   return {
     appState: state.appState,
     currWordList: state.currWordList,
-		currPage: state.currPage
+		currPage: state.currPage,
+    settings: state.settings
   }
 };
 

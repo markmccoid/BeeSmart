@@ -21,7 +21,7 @@ const INITIAL_STATE = {
 				pageNumber: 1
 			},
 			settings: {
-				wordsPerPage: 10
+				wordsPerPage: 6
 			}
 		};
 //--------------------------------------------

@@ -49243,7 +49243,7 @@ var INITIAL_STATE = {
 		pageNumber: 1
 	},
 	settings: {
-		wordsPerPage: 10
+		wordsPerPage: 6
 	}
 };
 //--------------------------------------------
@@ -50997,7 +50997,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  flex-direction: column;\n  border: 1px solid black;\n  padding: 5px;\n  margin: 10px;\n  width: 500px;\n  background-color: ', ';\n'], ['\n  display: flex;\n  flex-direction: column;\n  border: 1px solid black;\n  padding: 5px;\n  margin: 10px;\n  width: 500px;\n  background-color: ', ';\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n  display: flex;\n  justify-content: flex-start;\n'], ['\n  display: flex;\n  justify-content: flex-start;\n']);
+    _templateObject2 = _taggedTemplateLiteral(['\n  display: flex;\n  justify-content: flex-start;\n'], ['\n  display: flex;\n  justify-content: flex-start;\n']),
+    _templateObject3 = _taggedTemplateLiteral(['\n  display: flex;\n  justify-content: flex-end;\n'], ['\n  display: flex;\n  justify-content: flex-end;\n']),
+    _templateObject4 = _taggedTemplateLiteral(['\n  border: 1px solid red;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100px;\n  padding: 5px;\n'], ['\n  border: 1px solid red;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100px;\n  padding: 5px;\n']);
 
 var _react = __webpack_require__(4);
 
@@ -51028,6 +51030,8 @@ var CardDiv = _styledComponents2.default.div(_templateObject, function (props) {
   return props.isNewWord ? 'lightcoral' : 'cornsilk';
 });
 var CardGroup = _styledComponents2.default.div(_templateObject2);
+var DeleteContainer = _styledComponents2.default.div(_templateObject3);
+var CheckboxStyled = (0, _styledComponents2.default)(_checkbox2.default)(_templateObject4);
 //----WordCard Component -----//
 var WordCard = function WordCard(props) {
   var wordObj = props.wordObj;
@@ -51037,6 +51041,17 @@ var WordCard = function WordCard(props) {
   return _react2.default.createElement(
     CardDiv,
     { isNewWord: wordObj.isNewWord },
+    _react2.default.createElement(
+      DeleteContainer,
+      null,
+      _react2.default.createElement(
+        CheckboxStyled,
+        { onChange: function onChange(e) {
+            return props.onDeleteToggle(wordObj.id, e.target.checked);
+          } },
+        'Delete'
+      )
+    ),
     _react2.default.createElement(
       CardGroup,
       null,
@@ -51079,13 +51094,6 @@ var WordCard = function WordCard(props) {
       'div',
       null,
       wordObj.isNewWord ? "New Word" : ""
-    ),
-    _react2.default.createElement(
-      _checkbox2.default,
-      { onChange: function onChange(e) {
-          return props.onDeleteToggle(wordObj.id, e.target.checked);
-        } },
-      'Delete'
     )
   );
 };
@@ -51224,9 +51232,9 @@ var WordListContainer = function (_React$Component) {
         null,
         'Loading'
       );
-
+      var wordPerPage = parseInt(this.props.settings.wordsPerPage);
       if (loadStatus === 'success') {
-        var pageInfo = this.getPageData(this.props.currWordList, pageNumber, 10);
+        var pageInfo = this.getPageData(this.props.currWordList, pageNumber, wordPerPage);
         wordListJSX = _react2.default.createElement(_PageContainer2.default, {
           pageNumber: pageNumber,
           numberOfPages: pageInfo.numberOfPages,
@@ -51255,7 +51263,8 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     appState: state.appState,
     currWordList: state.currWordList,
-    currPage: state.currPage
+    currPage: state.currPage,
+    settings: state.settings
   };
 };
 
@@ -51748,7 +51757,7 @@ exports.settingsReducer = undefined;
 
 var _actions = __webpack_require__(23);
 
-var INIT_STATE = { wordsPerPage: 10 };
+var INIT_STATE = { wordsPerPage: 6 };
 
 var settingsReducer = exports.settingsReducer = function settingsReducer() {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INIT_STATE;

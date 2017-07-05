@@ -4,8 +4,8 @@
     "numberOfWords": 496,
     "type": "System"
   },
-  "suffixlatintest": {
-    "description": "Testing",
+    "suffixlatintest": {
+    "description": "",
     "numberOfWords": 4,
     "type": "System"
   },
@@ -97,6 +97,36 @@
   "physiology": {
     "description": "",
     "numberOfWords": 5825,
+    "type": "System"
+  },
+  "adjectivesuffix": {
+    "description": "",
+    "numberOfWords": 64,
+    "type": "System"
+  },
+  "nounsuffix": {
+    "description": "",
+    "numberOfWords": 180,
+    "type": "System"
+  },
+  "prefixsuffix": {
+    "description": "",
+    "numberOfWords": 96,
+    "type": "System"
+  },
+  "AmphibiansAndReptiles": {
+    "description": "",
+    "numberOfWords": 1009,
+    "type": "System"
+  },
+  "AnimalHusbandry": {
+    "description": "",
+    "numberOfWords": 5897,
+    "type": "System"
+  },
+  "Mammals": {
+    "description": "",
+    "numberOfWords": 3931,
     "type": "System"
   }
 }
